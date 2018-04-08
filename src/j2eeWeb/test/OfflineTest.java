@@ -15,27 +15,27 @@ public class OfflineTest extends HttpServlet {
 
 	public void init() throws ServletException {  
         boolean bool = pingLink();  
-        // È¡µÃApplication¶ÔÏó  
+        // å–å¾—Applicationå¯¹è±¡  
         ServletContext application = this.getServletContext();  
-        // ÉèÖÃApplicationÊôĞÔ  
+        // è®¾ç½®Applicationå±æ€§  
         application.setAttribute("bool", bool);  
     }  
       
 	public boolean pingLink() {
 		boolean bool = true;
-		Runtime runtime = Runtime.getRuntime(); // »ñÈ¡µ±Ç°³ÌĞòµÄÔËĞĞ½ø¶ÔÏó
-		Process process = null; // ÉùÃ÷´¦ÀíÀà¶ÔÏó
-		String line = null; // ·µ»ØĞĞĞÅÏ¢
-		InputStream is = null; // ÊäÈëÁ÷
-		InputStreamReader isr = null; // ×Ö½ÚÁ÷
-		BufferedReader br = null; //×Ö·ûÊäÈë»º³åÁ÷
+		Runtime runtime = Runtime.getRuntime(); // è·å–å½“å‰ç¨‹åºçš„è¿è¡Œè¿›å¯¹è±¡
+		Process process = null; // å£°æ˜å¤„ç†ç±»å¯¹è±¡
+		String line = null; // è¿”å›è¡Œä¿¡æ¯
+		InputStream is = null; // è¾“å…¥æµ
+		InputStreamReader isr = null; // å­—èŠ‚æµ
+		BufferedReader br = null; //å­—ç¬¦è¾“å…¥ç¼“å†²æµ
 		String ip = "www.baidu.com";
-		boolean res = false;// ½á¹û
+		boolean res = false;// ç»“æœ
 		try {
 			process = runtime.exec("ping " + ip); // PING
-			is = process.getInputStream(); // ÊµÀı»¯ÊäÈëÁ÷
-			isr = new InputStreamReader(is);// °ÑÊäÈëÁ÷×ª»»³É×Ö½ÚÁ÷
-			br = new BufferedReader(isr);// ´Ó×Ö½ÚÖĞ¶ÁÈ¡ÎÄ±¾
+			is = process.getInputStream(); // å®ä¾‹åŒ–è¾“å…¥æµ
+			isr = new InputStreamReader(is);// æŠŠè¾“å…¥æµè½¬æ¢æˆå­—èŠ‚æµ
+			br = new BufferedReader(isr);// ä»å­—èŠ‚ä¸­è¯»å–æ–‡æœ¬
 			while ((line = br.readLine()) != null) {
 				if (line.contains("TTL")) {
 					res = true;
@@ -46,10 +46,10 @@ public class OfflineTest extends HttpServlet {
 			isr.close();
 			br.close();
 			if (res) {
-				// Log.print("ping www.baidu.comÍ¨...ÒÑ¾­Á¬½ÓÍâÍø");
+				// Log.print("ping www.baidu.comé€š...å·²ç»è¿æ¥å¤–ç½‘");
 			} else {
 				bool = false;
-				// Log.print("ping www.baidu.com²»Í¨...ÎŞ·¨Á¬½ÓÍâÍø");
+				// Log.print("ping www.baidu.comä¸é€š...æ— æ³•è¿æ¥å¤–ç½‘");
 			}
 		} catch (IOException e) {
 			// Log.print(e.getMessage());
